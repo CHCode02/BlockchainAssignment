@@ -1,0 +1,188 @@
+let address;
+App = {
+  web3Provider: null,
+  contracts: {},
+
+  init: async function() {
+    
+  
+
+    return await App.initWeb3();
+  },
+
+  initWeb3: async function() {
+    
+    if (window.ethereum) {
+      App.web3Provider = window.ethereum;
+      try {
+        // Request account access
+       const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+       address = accounts[0]
+        document.getElementById("accountArea").innerHTML = address;
+      } catch (error) {
+        // User denied account access...
+        console.error("User denied account access")
+      }
+    }
+    // Legacy dapp browsers...
+    else if (window.web3) {
+
+      App.web3Provider = window.web3.currentProvider;
+    }
+    // If no injected web3 instance is detected, fall back to Ganache
+    else {
+      App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+    }
+    web3 = new Web3(App.web3Provider);
+
+    return App.initContract();
+  },
+
+  initContract: function() {
+
+
+    $.getJSON('Authentication.json', function(data) {
+      // Get the necessary contract artifact file and instantiate it with @truffle/contract
+      var AuthenticationArtifact = data;
+      App.contracts.Authentication = TruffleContract(AuthenticationArtifact);
+      
+      // Set the provider for our contract
+      App.contracts.Authentication.setProvider(App.web3Provider);
+      
+    });
+
+    
+    return App.bindEvents();
+  },
+
+  bindEvents: function() {
+    $(document).on('click', '#btn-login', App.handleLogin);
+    $(document).on('click', '#btn-register', App.handleRegister);
+    $(document).on('click', '#btn-detail', App.getUserDetail);
+    $(document).on('click', '#btn-add', App.addCart);
+    $(document).on('click', '#search', App.getDurianDetail); 
+    $(document).on('click', '#rate', App.addRating); 
+    $(document).on('click', '#addDurian', App.handleAddDurian); 
+    $(document).on('click', '#addPrice', App.addPrice); 
+    $(document).on('click', '#purchase', App.purchaseDurian); 
+    $(document).on('click', '#request', App.requestDurian); 
+  },
+
+  
+  handleLogin: function(event) {
+    var AuthenticationInstance;
+   
+
+    App.contracts.Authentication.deployed().then(function(instance) {
+      AuthenticationInstance = instance;
+
+      var username = document.getElementById("loginUsername").value;
+      var password = document.getElementById("loginPassword").value;
+    
+      AuthenticationInstance.login(username, password,{from:address});
+      
+    })
+      .then(function(){
+        App.loadCart();
+      })
+    .catch(function(err) {
+      console.log(err.message);
+    });
+
+  },
+
+  handleRegister: function(event) {
+    console.log("register")
+    event.preventDefault();
+    var AuthenticationInstance;
+   
+  
+
+   App.contracts.Authentication.deployed().then(function(instance) {
+    AuthenticationInstance = instance;
+      
+      var username = document.getElementById("regUsername").value;
+      var password = document.getElementById("regPassword").value;
+      var name = document.getElementById("regName").value;
+      var userAddress = document.getElementById("regAddress").value;
+      var postal = document.getElementById("regPostal").value;
+      var state = document.getElementById("regState").value;
+
+      
+      return AuthenticationInstance.register(username, password,name,userAddress,postal,state, {from:address});
+    
+    }).catch(function(err) {
+      console.log(err.message);
+    });
+
+  },
+
+  getUserDetail: function(event){
+    event.preventDefault();
+    var AuthenticationInstance;
+    var UserInstance;
+
+    App.contracts.Authentication.deployed().then(function(instance) {
+      AuthenticationInstance = instance;
+
+      return AuthenticationInstance.getCurrentUser.call();
+      
+    }).then(function(user){
+      document.getElementById('user-detail').textContent = user;
+    }).catch(function(err) {
+      console.log(err.message);
+    });
+  },
+  
+  handleAddDurian: function(event){
+    event.preventDefault();
+    var AuthenticationInstance;
+
+    App.contracts.Authentication.deployed().then(function(instance) {
+      AuthenticationInstance = instance;
+      var durianID = document.getElementById("dID").value;
+      var treeID = document.getElementById("tID").value;
+      var durianName = document.getElementById("dName").value;
+      var durianColour = document.getElementById("dColour").value;
+      var durianSize = document.getElementById("dSize").value;
+      var durianWeight = document.getElementById("dWeightInKg").value;
+      var durianProvenance = document.getElementById("dProvenance").value;
+      var farmName = document.getElementById("fName").value;
+      var farmLocation = document.getElementById("fLocation").value;
+      var durianHarvestDate = document.getElementById("durianHarvestDate").value;
+
+      return AuthenticationInstance.register(durianID, treeID, durianName, durianColour, durianSize, durianWeight, durianProvenance, farmName, farmLocation, durianHarvestDate, {from:address});
+    }).catch(function(err) {
+      console.log(err.message);
+    });
+  },
+  
+  getDurianDetail: function(event) {
+    event.preventDefault();
+    var AuthenticationInstance;
+
+    App.contracts.Authentication.deployed().then(function(instance) {
+      AuthenticationInstance = instance;  
+      var durianID = document.getElementById("enteredDID").value;
+
+      AuthenticationInstance.getDurianById(durianID, {from:address})
+    }).catch(function(err) {
+      console.log(err.message);
+    });
+  
+  },
+  
+  
+
+
+  
+
+  
+
+};
+
+$(function() {
+  $(window).load(function() {
+    App.init();
+  });
+});

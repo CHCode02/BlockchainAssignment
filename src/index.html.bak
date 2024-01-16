@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blockchain Assignment</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="card.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <script src="stars.js" defer></script>
+</head>
+
+<body
+    style="background-image: url('vector-durian-fruit-pattern.jpg');background-repeat: no-repeat;background-attachment: fixed; background-size: 100% 100%;">
+    <header>
+        <h1
+            style="text-align: center; font-size: 50px;color:#2C3E50;text-decoration: overline underline;text-decoration-style:wavy ;">
+            DTTBA
+        </h1>
+    </header>
+    <!-- Register (DEBBIE) -->
+    <div class="container">
+        <p class="title">Register</p>
+        <form>
+            <div class="group_1">
+                <label for="user">User Type :</label>
+                <select id="user" name="userArr[]">
+                    <option value="Farmer">Farmer</option>
+                    <option value="Distributor">Distributor</option>
+                    <option value="Retailer">Retailer</option>
+                    <option value="Customer">Customer</option>
+                </select>
+            </div>
+
+            <div class="group">
+                <input type="text" id="regName" name="userArr[]" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="label_1">Name</label>
+            </div>
+
+            <div class="group">
+                <input type="text" id="regUsername" name="userArr[]" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="label_1">Username</label>
+            </div>
+
+            <div class="group">
+                <input type="password" id="regPassword" name="userArr[]" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="label_1">Password</label>
+            </div>
+
+            <div class="group">
+                <input type="text" id="regAddress" name="userArr[]" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="label_1">Address Line</label>
+            </div>
+
+            <div class="group_2">
+                <input type="text" id="regPostal" class="postal" id="postal" name="userArr[]" required>
+                <span class="highlight"></span>
+                <span class="bar_1"></span>
+                <label class="label_1">Postal Code</label>
+            </div>
+
+            <div class="group_3">
+                <input type="text"id="regState" class="state" id="state" name="userArr[]" required>
+                <span class="highlight"></span>
+                <span class="bar_2"></span>
+                <label class="label_1">State</label>
+            </div>
+
+            <div>
+                <button class="button-5" id="btn-register">Register</button>
+            </div>
+
+        </form>
+
+        <p id="par"></p>
+    </div>
+    <!-- Login (DEBBIE)-->
+    <div class="container_1">
+        <p class="title">Login</p>
+
+        <form id="login-form">
+            <div class="group">
+                <input id="loginUsername" type="text" name="username" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="label_1">Username</label>
+            </div>
+
+            <div class="group">
+                <input type="password" id="loginPassword" name="password" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="label_1">Password</label>
+            </div>
+
+            <div>
+                <button class="button-5" name="login" id="btn-login" onclick="login()">Login</button>
+            </div>
+        </form>
+
+    </div>
+    <!-- Add Durian (ZHI YANG )-->
+    <div class="container_3">
+        <p class="title">Add Durian</p>
+
+        <form>
+            <div class="group_4">
+                <label for="colour">Durian Colour:</label>
+                <select id="dColour" name="durianArr[]">
+                    <option value="Green">Green</option>
+                    <option value="Yellowish">Yellowish</option>
+                    <option value="Dark Green">Dark Green</option>
+                </select>
+            </div>
+
+            <div class="group_5">
+                <label for="size">Durian size:</label>
+                <select id="dSize" name="durianArr[]">
+                    <option value="XXL">XXL</option>
+                    <option value="XL">XL</option>
+                    <option value="L">L</option>
+                </select>
+            </div>
+
+            <div class="group_2">
+                <input type="text" id="dID" class="postal" name="durianArr[]" required>
+                <span class="highlight"></span>
+                <span class="bar_1"></span>
+                <label class="label_1">Durian ID</label>
+            </div>
+
+            <div class="group_3">
+                <input type="text" id="dName" class="state" name="durianArr[]" required>
+                <span class="highlight"></span>
+                <span class="bar_2"></span>
+                <label class="label_1">Durian Name</label>
+            </div>
+
+            <div class="group">
+                <input type="number" id="dWeightInKg" name="durianArr[]" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="label_1">Weight(kg) </label>
+            </div>
+
+
+            <div class="group">
+                <input type="text" id="dProvenance" name="durianArr[]" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="label_1">Provenance</label>
+            </div>
+
+            <div class="group_2">
+                <input type="text" id="tID" class="postal" name="durianArr[]" required>
+                <span class="highlight"></span>
+                <span class="bar_1"></span>
+                <label class="label_1">Tree ID</label>
+            </div>
+
+            <div class="group_3">
+                <input type="text" id="fName" class="state" name="durianArr[]" required>
+                <span class="highlight"></span>
+                <span class="bar_2"></span>
+                <label class="label_1">Farm Name</label>
+            </div>
+
+            <div class="group">
+                <input type="text" id="fLocation" name="durianArr[]" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="label_1">Farm location</label>
+            </div>
+
+            <div class="group">
+                <input type="date" id="dHarvestDate" name="durianArr[]" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Harvest Date</label>
+            </div>
+
+
+            <div>
+                <button class="button-5" name="add" id="add" onclick="addDurian()">Add</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Search Page (ZHIYANG) -->
+    <div class="container_3">
+        <p class="title">Search Durian</p>
+
+        <form>
+            <div class="group">
+                <input type="search" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="label_1">Durian ID</label>
+            </div>
+
+            <button class="button-5" name="search" id="search" onclick="search()">Search</button>
+
+            <!-- Display Durian Information -->
+            <div class="container_4">
+                <div id="searchDurian">
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- Rating Page (CHEN HONG) -->
+    <div class="container_3">
+        <p class="title">Review</p>
+
+        <!-- Search durian first -->
+        <form>
+            <div class="group_6">
+                <input type="text" class="postal" name="durianArr[]" required>
+                <span class="highlight"></span>
+                <span class="bar_1"></span>
+                <label class="label_1">Durian ID</label>
+            </div>
+            <button class="button-1" name="search" id="search" type="button" onclick="search()">Search</button>
+        </form>
+        <form>
+            <div class="row">
+                <div class="column">
+                    <div class="card">
+                        <header>Taste</header>
+                        <fieldset class="rating">
+                            <input type="radio" id="5star-1" name="rating" value="5" /><label for="5star-1" class="full"
+                                title="Awesome"></label>
+                            <input type="radio" id="4.5star-1" name="rating" value="4.5" /><label for="4.5star-1"
+                                class="half"></label>
+                            <input type="radio" id="4star-1" name="rating" value="4" /><label for="4star-1"
+                                class="full"></label>
+                            <input type="radio" id="3.5star-1" name="rating" value="3.5" /><label for="3.5star-1"
+                                class="half"></label>
+                            <input type="radio" id="3star-1" name="rating" value="3" /><label for="3star-1"
+                                class="full"></label>
+                            <input type="radio" id="2.5star-1" name="rating" value="2.5" /><label for="2.5star-1"
+                                class="half"></label>
+                            <input type="radio" id="2star-1" name="rating" value="2" /><label for="2star-1"
+                                class="full"></label>
+                            <input type="radio" id="1-5star-1" name="rating" value="1.5" /><label for="1-5star-1"
+                                class="half"></label>
+                            <input type="radio" id="1star-1" name="rating" value="1" /><label for="1star-1"
+                                class="full"></label>
+                            <input type="radio" id="0.5star-1" name="rating" value="0.5" /><label for="0.5star-1"
+                                class="half"></label>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="card2">
+                        <header>Fragrance</header>
+                        <fieldset class="rating">
+                            <input type="radio" id="5star-2" name="rating2" value="5" /><label for="5star-2"
+                                class="full" title="Awesome"></label>
+                            <input type="radio" id="4.5star-2" name="rating2" value="4.5" /><label for="4.5star-2"
+                                class="half"></label>
+                            <input type="radio" id="4star-2" name="rating2" value="4" /><label for="4star-2"
+                                class="full"></label>
+                            <input type="radio" id="3.5star-2" name="rating2" value="3.5" /><label for="3.5star-2"
+                                class="half"></label>
+                            <input type="radio" id="3star-2" name="rating2" value="3" /><label for="3star-2"
+                                class="full"></label>
+                            <input type="radio" id="2.5star-2" name="rating2" value="2.5" /><label for="2.5star-2"
+                                class="half"></label>
+                            <input type="radio" id="2star-2" name="rating2" value="2" /><label for="2star-2"
+                                class="full"></label>
+                            <input type="radio" id="1.5star-2" name="rating2" value="1.5" /><label for="1.5star-2"
+                                class="half"></label>
+                            <input type="radio" id="1star-2" name="rating2" value="1" /><label for="1star-2"
+                                class="full"></label>
+                            <input type="radio" id="0.5star-2" name="rating2" value="0.5" /><label for="0.5star-2"
+                                class="half"></label>
+                        </fieldset>
+
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="card3">
+                        <header>Creaminess</header>
+                        <fieldset class="rating">
+                            <input type="radio" id="5star-3" name="rating3" value="5" /><label for="5star-3"
+                                class="full" title="Awesome"></label>
+                            <input type="radio" id="4.5star-3" name="rating" 3 value="4.5" /><label for="4.5star-3"
+                                class="half"></label>
+                            <input type="radio" id="4star-3" name="rating3" value="4" /><label for="4star-3"
+                                class="full"></label>
+                            <input type="radio" id="3.5star-3" name="rating3" value="3.5" /><label for="3.5star-3"
+                                class="half"></label>
+                            <input type="radio" id="3star-3" name="rating3" value="3" /><label for="3star-3"
+                                class="full"></label>
+                            <input type="radio" id="2.5star-3" name="rating3" value="2.5" /><label for="2.5star-3"
+                                class="half"></label>
+                            <input type="radio" id="2star-3" name="rating3" value="2" /><label for="2star-3"
+                                class="full"></label>
+                            <input type="radio" id="1.5star-3" name="rating3" value="1.5" /><label for="1.5star-3"
+                                class="half"></label>
+                            <input type="radio" id="1star-3" name="rating3" value="1" /><label for="3star1"
+                                class="full"></label>
+                            <input type="radio" id="0.5star-3" name="rating3" value="0.5" /><label for="0.5star-3"
+                                class="half"></label>
+                        </fieldset>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="group_9">
+                <input type="text" class="comment" name="durianArr[]" required>
+                <span class="highlight"></span>
+                <span class="bar_3"></span>
+                <label class="label_1">Comment</label>
+            </div>
+
+
+
+            <button class="button-5" name="rate" id="rate" type="button" onclick="rate()">Rate</button>
+
+        </form>
+
+        <div class="container_4">
+            <!-- after search the durian info will displayed out -->
+            <div id="searchDurian">
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+    
+
+        <!-- Display Durian Information -->
+        <div class="container_4">
+
+            <!-- after search the durian info will displayed out -->
+            <div id="searchDurian">
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Purchase durian (DEBBIE) -->
+    <div class="container_2">
+        <p class="title">Purchase Durian</p>
+
+        <div class="row">
+            <div class="column">
+                <div class="card">
+                    <h3>Card 1</h3>
+                    <p>Some text</p>
+                    <p>Some text</p>
+                    <!-- Display durian info in the cardview -->
+                    <div class="durianInfo">
+                        
+                    </div>
+                    <div class="group_8">
+                        <label for="qtt">Quantity :</label>
+                        <select id="qtt" name="qtt">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <button class="button-3" name="purchase" id="purchase" onclick="buyDurian()">Purchase</button>
+                </div>
+            </div>
+            <div class="column">
+                <div class="card">
+                    <h3>Card 1</h3>
+                    <p>Some text</p>
+                    <p>Some text</p>
+                    <div class="durianInfo">
+                        
+                    </div>
+
+                    <div class="group_8">
+                        <label for="qtt">Quantity :</label>
+                        <select id="qtt" name="qtt">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <button class="button-3" name="purchase" id="purchase" onclick="buyDurian()">Purchase</button>
+                </div>
+            </div>
+            <div class="column">
+                <div class="card">
+                    <h3>Card 1</h3>
+                    <p>Some text</p>
+                    <p>Some text</p>
+                    <div class="durianInfo">
+                        
+                    </div>
+                    <div class="group_8">
+                        <label for="qtt">Quantity :</label>
+                        <select id="qtt" name="qtt">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <button class="button-3" name="purchase" id="purchase" onclick="buyDurian()">Purchase</button>
+                </div>
+            </div>
+            <div class="column">
+                <div class="card">
+                    <h3>Card 1</h3>
+                    <p>Some text</p>
+                    <p>Some text</p>
+                    <div class="durianInfo">
+                        
+                    </div>
+                    <div class="group_8">
+                        <label for="qtt">Quantity :</label>
+                        <select id="qtt" name="qtt">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <button class="button-3" name="purchase" id="purchase" onclick="buyDurian()">Purchase</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+   
+
+
+
+
+     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   
+   <!-- Include all compiled plugins (below), or include individual files as needed -->
+   <script src="js/bootstrap.min.js"></script>
+   <script src="js/web3.min.js"></script>
+   <script src="js/truffle-contract.js"></script>
+   <script src="js/app.js"></script>
+
+</body>
+
+</html>
